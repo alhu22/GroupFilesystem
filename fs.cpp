@@ -557,6 +557,7 @@ FS::append(std::string filepath1, std::string filepath2)
     int8_t temp_parent_index[64];
     std::memcpy(temp_parent_index, parent_index, sizeof(parent_index));
 
+    // if we found source file
     int8_t res;
     if (source_file_copy.file_name[0] == '\0') {
         res = cd(filepath1);
@@ -570,7 +571,7 @@ FS::append(std::string filepath1, std::string filepath2)
         }
         source_file_copy = current_direct[source_file_index];
     }
-    // if we found source file
+    // if we found source file and destination file
     if (source_file_copy.file_name[0] != '\0' && dest_file_index >= 0){
         int8_t right = static_cast<int>(current_direct[dest_file_index].access_rights);
         if (right == 1 || right == 4 || right == 5) {
